@@ -375,6 +375,9 @@ do
 	local rawinsert = table.rawinsert
 	-- table.insert that respects metamethods
 	function table.insert( list, pos, value )
+		if type(list) ~= "table" then
+			error( "bad argument #1 to '" .. getname( ) .. "' (expected type 'table', received type '" .. type(list) .."')", 2 )
+		end
 		local last = #list
 		if value == nil then
 			value = pos
@@ -396,6 +399,9 @@ do
 	table.rawremove = table.remove
 	-- table.remove that respects metamethods
 	function table.remove( list, pos )
+		if type(list) ~= "table" then
+			error( "bad argument #1 to '" .. getname( ) .. "' (expected type 'table', received type '" .. type(list) .."')", 2 )
+		end
 		local last = #list
 		if pos == nil then
 			pos = last
